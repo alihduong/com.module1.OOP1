@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600" style="border: 1px solid #333"></canvas>
+
+<script>
+    class Circle {
+        radius;
+        color;
+
+        constructor(radius, color) {
+            this.radius = radius;
+            this.color = color;
+        }
+
+        getRadius() {
+            return this.radius;
+        }
+
+        setRadius(radius) {
+            this.radius = radius;
+        }
+
+        getcolor() {
+            return this.color;
+        }
+
+        setcolor(color) {
+            this.color = color;
+        }
+
+        getArea() {
+            return Math.PI * this.radius * this.radius;
+        }
+
+        draw(ctx) {
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.arc(200, 200, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+
+    let circle = new Circle(2, 'red');
+    let ctx = document.getElementById("myCanvas").getContext("2d");
+    alert("radius: " + circle.getRadius() + "; area: " + circle.getArea());
+
+    circle.setRadius(100);
+    console.log(circle.getRadius())
+    console.log(circle.getArea())
+
+    circle.draw(ctx);
+</script>
+</body>
+</html>
