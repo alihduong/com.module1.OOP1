@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Phone {
+        name;
+        battery;
+
+        constructor(name, battery) {
+            this.name = name;
+            this.battery = battery;
+            this.typing = '';
+            this.inbox = [];
+            this.typingbox = [];
+            this.sent = [];
+            this.status = false;
+        }
+
+        turnOn() {
+            this.status = true;
+        }
+
+        turnOff() {
+            this.status = false;
+        }
+
+        checkBaterry() {
+            return this.battery > 0 ? true : false;
+        }
+
+        chargeBattery(battery) {
+            return this.battery = battery;
+        }
+
+        typingMessage(typing) {
+            if (this.status && this.checkBaterry()) {
+                this.typingbox.push(typing);
+                this.battery--;
+            }
+        }
+
+        receivingMessage(typing) {
+            if (this.status && this.checkBaterry()) {
+                this.inbox = this.inbox.concat(typing);
+                this.battery--;
+            }
+        }
+
+        sendingMessage(name) {
+            if (this.status && this.checkBaterry() && name.status) {
+                name.receivingMessage(this.typingbox);
+                this.sent = this.sent.concat(this.typingbox);
+                this.typingbox = [];
+                this.battery--;
+            }
+        }
+
+    }
+
+    let nokia = new Phone('nokia', 100);
+    let iphone = new Phone('iphone', 100);
+
+</script>
+</body>
+</html>
